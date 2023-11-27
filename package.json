@@ -1,0 +1,36 @@
+{
+  "name": "@janhq/nitro",
+  "version": "0.0.1",
+  "description": "This is a wrapper in node of nitro cli, a high-efficiency C++ inference engine for edge computing, powering Jan. It is lightweight and embeddable, ideal for product integration.",
+  "nitroVersion": "0.1.14",
+  "scripts": {
+    "downloadnitro:linux": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && if [ \"$GPU\" = \"true\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64-cuda.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; fi",
+    "downloadnitro:darwin": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && ARCH=$(uname -m) && if [ \"$ARCH\" = \"arm64\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-arm64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-amd64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; fi",
+    "downloadnitro:win32": "setlocal enabledelayedexpansion && set NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && if \"%GPU%\" == \"true\" (download https://github.com/janhq/nitro/releases/download/v%NITRO_VERSION%/nitro-%NITRO_VERSION%-win-amd64-cuda.zip -e --strip 1 -o ./nitro/win-gpu && chmod +x ./nitro/win-gpu/nitro) else (download https://github.com/janhq/nitro/releases/download/v%NITRO_VERSION%/nitro-%NITRO_VERSION%-win-amd64.zip -e --strip 1 -o ./nitro)",
+    "downloadnitro": "run-script-os",
+    "install": "npm run downloadnitro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janhq/node-nitro.git"
+  },
+  "keywords": [
+    "nitro",
+    "node-nitro",
+    "nitro-cli"
+  ],
+  "author": "service@jan.ai",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/janhq/node-nitro/issues"
+  },
+  "homepage": "https://github.com/janhq/node-nitro#readme",
+  "dependencies": {
+    "download-cli": "^1.1.1",
+    "run-script-os": "^1.1.6"
+  },
+  "binary": {
+    "module_name": "@janhq/nitro",
+    "module_path": "./nitro/nitro"
+  }
+}
