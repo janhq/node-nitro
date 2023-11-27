@@ -1,6 +1,6 @@
 {
   "name": "@janhq/test",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This is a wrapper in node of nitro cli, a high-efficiency C++ inference engine for edge computing, powering Jan. It is lightweight and embeddable, ideal for product integration.",
   "nitroVersion": "0.1.14",
   "scripts": {
@@ -30,6 +30,7 @@
     "run-script-os": "^1.1.6"
   },
   "bin": {
-    "nitro": "nitro"
+    "nitro": "nitro",
+    "nitro.exe": "nitro.exe"
   }
 }
