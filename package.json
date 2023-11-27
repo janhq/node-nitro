@@ -6,7 +6,7 @@
   "scripts": {
     "downloadnitro:linux": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && if [ \"$GPU\" = \"true\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64-cuda.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; fi",
     "downloadnitro:darwin": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && ARCH=$(uname -m) && if [ \"$ARCH\" = \"arm64\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-arm64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-amd64.zip -e --strip 1 -o ./nitro && chmod +x ./nitro/nitro; fi",
-    "downloadnitro:win32": "setlocal enabledelayedexpansion && set NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && if \"%GPU%\" == \"true\" (download https://github.com/janhq/nitro/releases/download/v%NITRO_VERSION%/nitro-%NITRO_VERSION%-win-amd64-cuda.zip -e --strip 1 -o ./nitro/win-gpu && chmod +x ./nitro/win-gpu/nitro) else (download https://github.com/janhq/nitro/releases/download/v%NITRO_VERSION%/nitro-%NITRO_VERSION%-win-amd64.zip -e --strip 1 -o ./nitro)",
+    "downloadnitro:win32": "download.bat",
     "downloadnitro": "run-script-os",
     "install": "npm run downloadnitro"
   },
