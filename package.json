@@ -1,6 +1,6 @@
 {
-  "name": "@janhq/nitro",
-  "version": "0.0.1",
+  "name": "@janhq/test",
+  "version": "0.0.2",
   "description": "This is a wrapper in node of nitro cli, a high-efficiency C++ inference engine for edge computing, powering Jan. It is lightweight and embeddable, ideal for product integration.",
   "nitroVersion": "0.1.14",
   "scripts": {
@@ -32,5 +32,8 @@
   "binary": {
     "module_name": "@janhq/nitro",
     "module_path": "./nitro/nitro"
+  },
+  "bin": {
+    "nitro": "./nitro/nitro"
   }
 }
