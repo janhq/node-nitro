@@ -1,6 +1,6 @@
 # Node-Nitro
 
-Node-Nitro is a project that automates the download and setup of the Nitro software. It is designed to work on Windows and supports both the standard and CUDA-enabled versions of Nitro.
+Node-Nitro is a project that automates the download and setup of the Nitro software. It is designed to work on Windows, ubuntu and macos and supports both the standard and CUDA-enabled versions of Nitro.
 
 ## Features
 
@@ -46,8 +46,6 @@ After installation, you can run the following command to download and setup Nitr
 ```bash
 nitro
 ```
-
-The script will download the specified version of Nitro and extract it to the current directory.
 
 ## License
 
