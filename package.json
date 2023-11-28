@@ -1,11 +1,11 @@
 {
-  "name": "@janhq/test",
-  "version": "0.0.5",
+  "name": "@janhq/nitro",
+  "version": "0.0.1",
   "description": "This is a wrapper in node of nitro cli, a high-efficiency C++ inference engine for edge computing, powering Jan. It is lightweight and embeddable, ideal for product integration.",
-  "nitroVersion": "0.1.14",
+  "nitroVersion": "0.1.17",
   "scripts": {
-    "downloadnitro:linux": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && if [ \"$GPU\" = \"true\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64-cuda.zip -e --strip 1 -o . && chmod +x ./nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64.zip -e --strip 1 -o . && chmod +x ./nitro; fi",
-    "downloadnitro:darwin": "NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\") && ARCH=$(uname -m) && if [ \"$ARCH\" = \"arm64\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-arm64.zip -e --strip 1 -o . && chmod +x ./nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-amd64.zip -e --strip 1 -o . && chmod +x ./nitro; fi",
+    "downloadnitro:linux": "if [ -z \"$NITRO_VERSION\" ]; then NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\"); fi && if [ \"$GPU\" = \"true\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64-cuda.zip -e --strip 1 -o . && chmod +x ./nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-linux-amd64.zip -e --strip 1 -o . && chmod +x ./nitro; fi",
+    "downloadnitro:darwin": "if [ -z \"$NITRO_VERSION\" ]; then NITRO_VERSION=$(node -p \"require('./package.json').nitroVersion\"); fi && ARCH=$(uname -m) && if [ \"$ARCH\" = \"arm64\" ]; then download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-arm64.zip -e --strip 1 -o . && chmod +x ./nitro; else download https://github.com/janhq/nitro/releases/download/v${NITRO_VERSION}/nitro-${NITRO_VERSION}-mac-amd64.zip -e --strip 1 -o . && chmod +x ./nitro; fi",
     "downloadnitro:win32": "download.bat",
     "downloadnitro": "run-script-os",
     "install": "npm run downloadnitro"
@@ -13,6 +13,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/janhq/node-nitro.git"
+  },
+  "bin": {
+    "nitro": "nitro.js"
   },
   "keywords": [
     "nitro",
@@ -26,11 +29,8 @@
   },
   "homepage": "https://github.com/janhq/node-nitro#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "download-cli": "^1.1.1",
     "run-script-os": "^1.1.6"
-  },
-  "bin": {
-    "nitro": "nitro",
-    "nitro.exe": "nitro.exe"
   }
 }
