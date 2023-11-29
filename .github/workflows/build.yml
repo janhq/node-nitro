@@ -28,11 +28,8 @@ jobs:
       - name: "Commit new version to main and create tag"
         if: github.event_name == 'push' && github.event.pull_request.head.repo.full_name != github.repository
         run: |
-          version=$(jq -r '.version' src/package.json)
+          version=$(jq -r '.version' package.json)
           git config --global user.email "service@jan.ai"
           git config --global user.name "Service Account"
-          git add src/package.json
-          git commit -m "${GITHUB_REPOSITORY}: Update tag build $version"
-          git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.PAT_SERVICE_ACCOUNT }}" push origin HEAD:main
           git tag -a $version -m "${GITHUB_REPOSITORY}: Update tag build $version"
           git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.PAT_SERVICE_ACCOUNT }}" push origin $version
